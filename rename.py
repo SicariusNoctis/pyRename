@@ -3,7 +3,7 @@ import os
 import re
 import argparse
 
-argsParser = argparse.ArgumentParser(description='Regex rename utility')
+argsParser = argparse.ArgumentParser(description='pyRename')
 argsParser.add_argument('-f', action="store", required=True, help="Find regex")
 argsParser.add_argument('-r', action="store", required=True, help="Replace regex (use \1, \2, ... for captures)")
 args = argsParser.parse_args()
@@ -43,9 +43,9 @@ renameList = getRenameList(path, find, replace, regexOptions)
 duplicateConflicts = getDuplicateConflicts(renameList)
 existingConflicts = getExistingConflicts(renameList, path)
 
-print("\n\nReplacements:\n" + prettyPair(renameList, " => "))
-print("\n\nConflicts (duplicate output):\n" + prettyPair(duplicateConflicts, " => "))
-print("\n\nConflicts (with existing files):\n" + "\n".join(existingConflicts))
+print("\nReplacements:\n" + (prettyPair(renameList, " => ") if len(renameList) > 0 else "None"))
+print("\nConflicts (duplicate output):\n" + (prettyPair(duplicateConflicts, " => ") if len(duplicateConflicts) > 0 else "None"))
+print("\nConflicts (with existing files):\n" + ("\n".join(existingConflicts) if len(existingConflicts) > 0 else "None"))
 
-if input("\n\nContinue with rename? [Y/N]").upper() == "Y":
+if input("\nContinue with rename [Y/N]? ").upper() == "Y":
 	renameFiles(renameList)
