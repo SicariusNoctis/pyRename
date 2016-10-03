@@ -5,7 +5,7 @@ import argparse
 
 argsParser = argparse.ArgumentParser(description='pyRename')
 argsParser.add_argument('-f', action="store", required=True, help="Find regex")
-argsParser.add_argument('-r', action="store", required=True, help="Replace regex (use \1, \2, ... for captures)")
+argsParser.add_argument('-r', action="store", required=True, help="Replace regex (use \\1, \\2, ... for captures)")
 args = argsParser.parse_args()
 
 path = "."
