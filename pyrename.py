@@ -4,18 +4,18 @@ import re
 import argparse
 
 argsParser = argparse.ArgumentParser(description='pyRename')
-argsParser.add_argument('-f', action="store", required=True, help="Find regex")
-argsParser.add_argument('-r', action="store", required=True, help="Replace regex (use \\1, \\2, ... for captures)")
+argsParser.add_argument('-c', '--ignorecase', action="store_true", help="Ignore case")
+argsParser.add_argument('-d', '--dir', type=str, action="store", help="Directory (default is current directory)")
+argsParser.add_argument('-f', '--find', type=str, action="store", help="Find regex")
+argsParser.add_argument('-r', '--replace', type=str, action="store", help="Replace regex (use \\1, \\2, ... for captures)")
 args = argsParser.parse_args()
 
-path = "."
-find = args.f
-replace = args.r
-regexOptions = re.IGNORECASE
+path = args.dir if args.dir != None else "."
+find = args.find if args.find != None else input("Find: ")
+replace = args.replace if args.replace != None else input("Replace: ")
+regexOptions = re.IGNORECASE if args.ignorecase else 0
 
-print("\nFind: %s\nReplace: %s" % (find, replace))
-
-def getRenameList(path: str, find: str, replace: str, regexOptions=re.IGNORECASE):
+def getRenameList(path: str, find: str, replace: str, regexOptions=0):
 	fnames = os.listdir(path)
 	regex = re.compile(find, regexOptions)
 

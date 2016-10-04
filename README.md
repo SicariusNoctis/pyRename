@@ -28,6 +28,15 @@ Bulk renames files using specified regexes, and warns about conflicts.
 
 	Continue with rename [Y/N]? Y
 
+## Arguments
+
+| Flag | Command      | Description                                    |
+| ---- | ------------ | ---------------------------------------------- |
+| -c   | --ignorecase | Ignore case                                    |
+| -d   | --dir        | Directory (default is current directory)       |
+| -f   | --find       | Find regex                                     |
+| -r   | --replace    | Replace regex (use \\1, \\2, ... for captures) |
+
 ## Todo
 
  - Ignore directories option
