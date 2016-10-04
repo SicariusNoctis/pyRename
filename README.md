@@ -4,11 +4,11 @@ Bulk renames files using specified regexes, and warns about conflicts.
 
 **Installation:**
 
-	python setup.py
+	python setup.py install
 
 **Example usage:**
 
-	python rename.py -f="annoyingPrefix_(.+)" -r="\1"
+	pyrename -f="annoyingPrefix_(.+)" -r="\1"
 
 **Output:**
 
