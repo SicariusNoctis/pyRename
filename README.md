@@ -30,17 +30,19 @@ Bulk renames files using specified regexes, and warns about conflicts.
 
 ## Arguments
 
-| Flag | Command      | Description                                    |
-| ---- | ------------ | ---------------------------------------------- |
-| -c   | --ignorecase | Ignore case                                    |
-| -d   | --dir        | Directory (default is current directory)       |
-| -f   | --find       | Find regex                                     |
-| -r   | --replace    | Replace regex (use \\1, \\2, ... for captures) |
+| Flag | Command          | Description                                      |
+| ---- | ---------------- | ------------------------------------------------ |
+| -c   | --noconfirmation | Suppress confirmation (if no conflicts)          |
+| -d   | --subdirectories | Include subdirectories                           |
+| -f   | --find           | Find regex                                       |
+| -i   | --ignorecase     | Ignore case                                      |
+| -p   | --path           | Directory (default is current directory)         |
+| -r   | --replace        | Replace regex (use \\1, \\2, ... for captures)   |
+| -w   | --nowarnings     | Suppress warnings                                |
 
 ## Todo
 
- - Ignore directories option
- - Recursive subdirectory rename
+ - None
 
 ## Known issues
 
