@@ -1,4 +1,3 @@
-import sys
 import os
 import re
 import argparse
@@ -30,24 +29,24 @@ def getRenameList(find: str, replace: str, regexOptions=0):
 	return [(f, regex.sub(replace, f)) for f in fnames if regex.match(f)]
 
 # Get conflicts in duplicate outputs
-def getDuplicateConflicts(renameList):
+def getDuplicateConflicts():
 	newNames = [x[1] for x in renameList]
 	return [x for x in renameList if newNames.count(x[1]) > 1]
 
 # Find conflicts with existing files
-def getExistingConflicts(path):
+def getExistingConflicts():
 	newNames = [x[1] for x in renameList]
 	return [f for f in fnames if f in newNames]
 
-def renameFiles(renameList):
+def renameFiles():
 	[os.rename(x[0], x[1]) for x in renameList]
+
+renameList = getRenameList(find, replace, regexOptions)
+duplicateConflicts = getDuplicateConflicts()
+existingConflicts = getExistingConflicts()
 
 def prettyPair(pairs, middle):
 	return "\n".join([("{0}" + middle + "{1}").format(*x) for x in pairs])
-
-renameList = getRenameList(find, replace, regexOptions)
-duplicateConflicts = getDuplicateConflicts(renameList)
-existingConflicts = getExistingConflicts(renameList)
 
 print("\nReplacements:\n" + (prettyPair(renameList, " => ") if len(renameList) > 0 else "None"))
 
@@ -56,4 +55,4 @@ if not args.nowarnings:
 	print("\nConflicts (with existing files):\n" + ("\n".join(existingConflicts) if len(existingConflicts) > 0 else "None"))
 
 if args.noconfirmation or input("\nContinue with rename [Y/N]? ").upper() == "Y":
-	renameFiles(renameList)
+	renameFiles()
